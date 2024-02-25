@@ -13,15 +13,23 @@
     <nav class="navbar">
         <h1 class="logo">Shoppy</h1>
         <div class="nav-buttons">
-            <button onclick="" id="cart" style="margin-right: 30px;">Cart</button>
+            <button onclick="return show_cart()" id="cart" style="margin-right: 30px;">Cart</button>
             <button onclick="return logout()" id="lo-btn">Log Out</button>
         </div>
     </nav>
-    <!-- ----------------------------------------card---------------------------------------- -->
+    <!-- ----------------------------------------product card---------------------------------------- -->
     <div id="gr" class="grid-container">
 
     </div>
     <div id="vegonly" class="grid-container"></div>
+    <!-- ----------------------------------------cart---------------------------------------- -->
+    <div id="dialog" class="dialog">
+        <div class="dialog-content">
+            <h2>Total Price to Pay</h2>
+            <span onclick="return close_fn()" class="close">&times;</span>
+            <p id="total-price"></p>
+        </div>
+    </div>
     <script>
         const cli = sessionStorage.getItem('current_loggedIn');
         if (cli == "" || cli == null) {
@@ -47,6 +55,12 @@
             <div class="product-card">
                 <h2>${product.name}</h2>
                 <p>Description: ${product.desc}</p>
+                <p>Price: ${product.price}</p>
+                <div>
+                    <button class="plus-btn" onclick="addToCart('${product.name}', ${product.price})">+</button>
+                    <span id="quantity-${product.name}">0</span>
+                    <button class="minus-btn" onclick="removeFromCart('${product.name}', ${product.price})">-</button>
+                </div>
             </div>
         `);
 
@@ -56,8 +70,50 @@
                 console.error('Error fetching JSON:', error);
             }
         }
-
         fetchProducts();
+
+        let cart = {};
+        let totalPrice = 0;
+
+        function addToCart(productName, price) {
+            if (!cart[productName]) {
+                cart[productName] = {
+                    quantity: 0,
+                    totalPrice: 0,
+                    price: price
+                };
+            }
+            cart[productName].quantity++;
+            cart[productName].totalPrice = cart[productName].quantity * cart[productName].price;
+            totalPrice += cart[productName].price;
+            updateCartDisplay();
+        }
+
+        function removeFromCart(productName, price) {
+            if (cart[productName] && cart[productName].quantity > 0) {
+                cart[productName].quantity--;
+                cart[productName].totalPrice = cart[productName].quantity * cart[productName].price;
+                totalPrice -= cart[productName].price;
+                updateCartDisplay();
+            }
+        }
+
+        function updateCartDisplay() {
+            for (const productName in cart) {
+                if (cart.hasOwnProperty(productName)) {
+                    document.getElementById(`quantity-${productName}`).textContent = cart[productName].quantity;
+                }
+            }
+            document.getElementById("total-price").textContent = totalPrice;
+        }
+        document.getElementById("dialog").style.display="none";
+        function show_cart(){
+            document.getElementById("dialog").style.display="block";
+        }
+        function close_fn(){
+            document.getElementById("dialog").style.display="none";
+        }
+
     </script>
 </body>
 
