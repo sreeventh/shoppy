@@ -1,0 +1,8 @@
+functionalities
+
+cart 
+fetch api 
+total bill 
+add del items to cart 
+sign in 
+log in 
