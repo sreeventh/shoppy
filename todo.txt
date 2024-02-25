@@ -1,4 +1,1 @@
-functionalities
 
-total bill 
-add del items to cart 
