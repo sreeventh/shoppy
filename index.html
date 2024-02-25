@@ -89,7 +89,7 @@
                 localStorage.setItem('users', JSON.stringify(users));
                 alert("Sign-in successful!");
                 // return true; // Allow form submission
-                return red_home();
+                // return red_home();
             }
         }
 
@@ -122,6 +122,7 @@
             // If a matching user is found, log them in
             if (user) {
                 // Redirect to the home page or perform any other actions for successful login
+                sessionStorage.setItem("current_loggedIn",user.username)
                 alert("Login successful!");
                 return red_home();
             } else {

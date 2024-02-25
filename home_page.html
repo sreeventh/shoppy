@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -12,9 +13,21 @@
     <nav class="navbar">
         <h1 class="logo">Shoppy</h1>
         <div class="nav-buttons">
-            <button id="lo-btn" onclick="">Log Out</button>
+            <button onclick="return logout()" id="lo-btn" onclick="">Log Out</button>
         </div>
     </nav>
+    <script>
+        const cli = sessionStorage.getItem('current_loggedIn');
+        if(cli=="" || cli==null){
+            alert("Please log-in to continue!");
+            window.location.href="index.html";
+        }
+        
+        function logout(){
+            sessionStorage.setItem("current_loggedIn","");
+            window.location.href="index.html";
+        }
+    </script>
 </body>
 
 </html>
