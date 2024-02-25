@@ -70,9 +70,12 @@
             var users = JSON.parse(localStorage.getItem('users')) || [];
 
             // Check if the username already exists
-            var userExists = users.some(function (user) {
-                return user.username === username;
-            });
+            var userExists = users.reduce(function (acc, user) {
+                if (user.username === username) {
+                    acc = true;
+                }
+                return acc;
+            }, false);
 
             // If the username already exists, alert the user
             if (userExists) {
@@ -90,6 +93,7 @@
             }
         }
 
+
         function red_home() {
             window.location.href = "home_page.html"
             return false;
@@ -104,8 +108,15 @@
             var users = JSON.parse(localStorage.getItem('users')) || [];
 
             // Check if the user exists and the password matches
+            // find() retrieves first element in array that matches
             var user = users.find(function (user) {
                 return user.username === username && user.password === encp;
+                // the above code is same as the below one
+                // if (user.username == username && user.password == encp) {
+                //     return true;
+                // } else {
+                //     return false;
+                // }
             });
 
             // If a matching user is found, log them in
