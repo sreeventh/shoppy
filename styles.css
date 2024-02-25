@@ -1,70 +1,103 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    margin: 0;
-  }
-  
-  .nav-buttons button {
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('./images/back.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Ensure the body covers the entire viewport height */
+}
 
-  .nav-buttons button:hover{
-    background-color: wheat;
-    color: #333;
-  }
-  
-  .container {
-    max-width: 400px;
-    margin: 50px auto;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-    display: none;
-  }
-  
-  .container h2 {
-    margin-top: 0;
-  }
-  
-  .container form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .container form input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .container form button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .container form button:hover {
-    background-color: #fbf7f7;
-    color: #333;
-  }
-  
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  margin: 0;
+}
+
+.nav-buttons button {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.nav-buttons button:hover {
+  background-color: wheat;
+  color: #333;
+}
+
+.container {
+  max-width: 400px;
+  margin: 200px auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  display: none;
+  opacity: 90%;
+}
+
+.container h2 {
+  margin-top: 0;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.container form button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.container form button:hover {
+  background-color: #fbf7f7;
+  color: #333;
+}
+
+/* Product card styles */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.product-card {
+  margin-top: 20px;
+  margin-left: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 80%;
+}
+
+.product-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}

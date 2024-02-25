@@ -13,13 +13,15 @@
     <nav class="navbar">
         <h1 class="logo">Shoppy</h1>
         <div class="nav-buttons">
-            <button onclick="return logout()" id="lo-btn" onclick="">Log Out</button>
+            <button onclick="" id="cart" style="margin-right: 30px;">Cart</button>
+            <button onclick="return logout()" id="lo-btn">Log Out</button>
         </div>
     </nav>
     <!-- ----------------------------------------card---------------------------------------- -->
-    <div id="gr">
+    <div id="gr" class="grid-container">
 
     </div>
+    <div id="vegonly" class="grid-container"></div>
     <script>
         const cli = sessionStorage.getItem('current_loggedIn');
         if (cli == "" || cli == null) {
@@ -32,27 +34,31 @@
             window.location.href = "index.html";
         }
 
-        // fetch function
-        fetch('https://sreeventh.github.io/api_list/grocery.json')
-            .then(response => response.json())
-            .then(products => {
+        async function fetchProducts() {
+            try {
+                const response = await fetch('https://sreeventh.github.io/api_list/grocery.json');
+                const products = await response.json();
+
                 // Manipulate and use the JSON data
                 console.log(products);
 
-                // Example: Display products in HTML
-                const productsContainer = document.getElementById('gr');
-
-                products.forEach(product => {
-                    const productDiv = document.createElement('div');
-                    productDiv.innerHTML = `
+                // Use map to generate an array of product card HTML strings
+                const productCards = products.map(product => `
+            <div class="product-card">
                 <h2>${product.name}</h2>
                 <p>Description: ${product.desc}</p>
                 <p>Veg: ${product.veg ? 'Yes' : 'No'}</p>
-            `;
-                    productsContainer.appendChild(productDiv);
-                });
-            })
-            .catch(error => console.error('Error fetching JSON:', error));
+            </div>
+        `);
+
+                // Join the product card HTML strings and append to the container
+                document.getElementById("gr").innerHTML = productCards.join('');
+            } catch (error) {
+                console.error('Error fetching JSON:', error);
+            }
+        }
+
+        fetchProducts();
     </script>
 </body>
 
