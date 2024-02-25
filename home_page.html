@@ -16,17 +16,43 @@
             <button onclick="return logout()" id="lo-btn" onclick="">Log Out</button>
         </div>
     </nav>
+    <!-- ----------------------------------------card---------------------------------------- -->
+    <div id="gr">
+
+    </div>
     <script>
         const cli = sessionStorage.getItem('current_loggedIn');
-        if(cli=="" || cli==null){
+        if (cli == "" || cli == null) {
             alert("Please log-in to continue!");
-            window.location.href="index.html";
+            window.location.href = "index.html";
         }
-        
-        function logout(){
-            sessionStorage.setItem("current_loggedIn","");
-            window.location.href="index.html";
+
+        function logout() {
+            sessionStorage.setItem("current_loggedIn", "");
+            window.location.href = "index.html";
         }
+
+        // fetch function
+        fetch('https://sreeventh.github.io/api_list/grocery.json')
+            .then(response => response.json())
+            .then(products => {
+                // Manipulate and use the JSON data
+                console.log(products);
+
+                // Example: Display products in HTML
+                const productsContainer = document.getElementById('gr');
+
+                products.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    productDiv.innerHTML = `
+                <h2>${product.name}</h2>
+                <p>Description: ${product.desc}</p>
+                <p>Veg: ${product.veg ? 'Yes' : 'No'}</p>
+            `;
+                    productsContainer.appendChild(productDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
     </script>
 </body>
 
