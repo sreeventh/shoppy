@@ -68,6 +68,7 @@
 
             // Retrieve existing users from localStorage
             var users = JSON.parse(localStorage.getItem('users')) || [];
+            console.log(users);
 
             // Check if the username already exists
             var userExists = users.reduce(function (acc, user) {
