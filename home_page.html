@@ -137,7 +137,7 @@
 
         function updateCartDisplay() {
             for (const productName in cart) {
-                if (cart.hasOwnProperty(productName)) {
+                if (cart[productName]) {
                     document.getElementById(`quantity-${productName}`).textContent = cart[productName].quantity;
                 }
             }
