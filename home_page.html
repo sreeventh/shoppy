@@ -117,12 +117,10 @@
             if (!cart[productName]) {
                 cart[productName] = {
                     quantity: 0,
-                    totalPrice: 0,
                     price: price
                 };
             }
             cart[productName].quantity++;
-            cart[productName].totalPrice = cart[productName].quantity * cart[productName].price;
             totalPrice += cart[productName].price;
             updateCartDisplay();
         }
@@ -130,7 +128,6 @@
         function removeFromCart(productName, price) {
             if (cart[productName] && cart[productName].quantity > 0) {
                 cart[productName].quantity--;
-                cart[productName].totalPrice = cart[productName].quantity * cart[productName].price;
                 totalPrice -= cart[productName].price;
                 updateCartDisplay();
             }
