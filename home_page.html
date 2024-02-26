@@ -112,7 +112,6 @@
 
         let cart = {};
         let totalPrice = 0;
-
         function addToCart(productName, price) {
             if (!cart[productName]) {
                 cart[productName] = {
@@ -122,6 +121,8 @@
             }
             cart[productName].quantity++;
             totalPrice += cart[productName].price;
+            console.log(cart);
+            console.log(totalPrice);
             updateCartDisplay();
         }
 
