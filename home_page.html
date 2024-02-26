@@ -116,20 +116,21 @@
             if (!cart[productName]) {
                 cart[productName] = {
                     quantity: 0,
-                    price: price
                 };
             }
             cart[productName].quantity++;
-            totalPrice += cart[productName].price;
+            totalPrice += price;
             console.log(cart);
             console.log(totalPrice);
             updateCartDisplay();
         }
-
+        
         function removeFromCart(productName, price) {
             if (cart[productName] && cart[productName].quantity > 0) {
                 cart[productName].quantity--;
-                totalPrice -= cart[productName].price;
+                totalPrice -= price;
+                console.log(cart);
+                console.log(totalPrice);
                 updateCartDisplay();
             }
         }
