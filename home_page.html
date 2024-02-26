@@ -100,8 +100,11 @@
                 });
 
                 // Join the product card HTML strings and append to the container
+                // productCards is array with divs, if we dont specify '' in productCards.join('')
+                // -- it will take comma as a seperator
                 document.getElementById("gr").innerHTML = productCards.join('');
                 document.getElementById("vegonly").innerHTML = vegp.join('');
+                console.log(productCards);
 
 
             } catch (error) {
