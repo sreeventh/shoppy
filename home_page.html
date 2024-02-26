@@ -136,6 +136,7 @@
         }
 
         function updateCartDisplay() {
+            // for each key(pname) in cart
             for (const productName in cart) {
                 if (cart[productName]) {
                     document.getElementById(`quantity-${productName}`).textContent = cart[productName].quantity;
